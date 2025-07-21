@@ -39,13 +39,27 @@ function playRound(humanChoice, computerChoice) {
 } 
 
 
-const buttons = document.querySelectorAll("button");
-buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-        const humanChoice = button.id;
-        const computerChoice = getComputerChoice();
-        playRound(humanChoice, computerChoice);
+const final = document.createElement("div");
 
-    });
-})
+function playGame(){
+    while (humanScore < 5 && computerScore < 5){
+
+        const buttons = document.querySelectorAll("button");
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const humanChoice = button.id;
+                const computerChoice = getComputerChoice();
+                playRound(humanChoice, computerChoice);
+
+            });
+        })
+    }
+
+    final.textContent = `Game over! ${humanScore === 5 ? "You" : "Computer"} wins.`;
+    contain.appendChild(final);
+
+}
+
+playGame();
+
 
