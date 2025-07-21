@@ -20,7 +20,7 @@ const contain = document.querySelector("#container");
 const results = document.querySelector(".results");
 results.textContent = `you VS. computer = ${humanScore} : ${computerScore}`;
 
-const messages = document.createElement("div");
+const messages = document.createElement("p");
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
@@ -39,27 +39,27 @@ function playRound(humanChoice, computerChoice) {
 } 
 
 
-const final = document.createElement("div");
+const last = document.createElement("p");
 
-function playGame(){
-    while (humanScore < 5 && computerScore < 5){
+while (humanScore < 5 && computerScore < 5){
 
-        const buttons = document.querySelectorAll("button");
-        buttons.forEach((button) => {
-            button.addEventListener("click", () => {
-                const humanChoice = button.id;
-                const computerChoice = getComputerChoice();
-                playRound(humanChoice, computerChoice);
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const humanChoice = button.id;
+            const computerChoice = getComputerChoice();
+            playRound(humanChoice, computerChoice);
 
-            });
-        })
-    }
-
-    final.textContent = `Game over! ${humanScore === 5 ? "You" : "Computer"} wins.`;
-    contain.appendChild(final);
-
+        });
+    })
 }
 
-playGame();
+if (humanScore === 5){
+    last.textContent = "Game over! You win!";
+} else {
+    last.textContent = "Game over! Computer wins."
+}
+
+contain.appendChild(last);
 
 
